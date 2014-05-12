@@ -147,5 +147,21 @@ public class JUnit {
         
     }
 
+    @Test
+    public void testCheckIfGameOver(){
+        Game.data = new int[][]{{0,0,0,1},
+                                {1,1,1,0},
+                                {1,0,0,1},
+                                {1,0,0,0}};
+        boolean gameOver = Game.checkIfGameOver();
+        Assert.assertFalse(gameOver);
+        
+        Game.data = new int[][]{{2,4,8,16},
+                                {4,2,32,8},
+                                {2,4,8,16},
+                                {4,2,32,8}};
+        gameOver = Game.checkIfGameOver();
+        Assert.assertTrue(gameOver);
+    }
 }
 
