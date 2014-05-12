@@ -1,7 +1,5 @@
 
 import java.util.Scanner;
-import org.omg.PortableInterceptor.DISCARDING;
-
 
 public class Game {
 
