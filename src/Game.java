@@ -104,4 +104,23 @@ public class Game {
     public static void tiltDown(){
         // tilt board down
     }
+    
+    private static int getRandomNumber(){
+        return (int)Math.random()*4;
+    }
+    
+    private static void populateRandomCell(){
+        int i,j;
+        do{
+            i = getRandomNumber();
+            j = getRandomNumber();
+            
+        }while(data[i][j]==0);
+        if(getRandomNumber()<2){
+            data[i][j] = 2;
+        }
+        else{
+            data[i][j] = 2;
+        }
+    }
 }
