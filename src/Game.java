@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class Game {
 
     public static Scanner scan = new Scanner(System.in);
-    public static int[][] data = new int[4][4];
+    public static int[][] data = new int[][]{{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     
     public static void main(String[] args) {
         String userInput;
+        // initially populate 2 random cells
+        populateRandomCell();
+        populateRandomCell();
         do{
             displayBoard();
             userInput = readUserInput();
@@ -105,8 +108,8 @@ public class Game {
         // tilt board down
     }
     
-    private static int getRandomNumber(){
-        return (int)Math.random()*4;
+    public static int getRandomNumber(){
+        return (int)(Math.random()*4);
     }
     
     private static void populateRandomCell(){
@@ -115,12 +118,12 @@ public class Game {
             i = getRandomNumber();
             j = getRandomNumber();
             
-        }while(data[i][j]==0);
+        }while(data[i][j]!=0);
         if(getRandomNumber()<2){
             data[i][j] = 2;
         }
         else{
-            data[i][j] = 2;
+            data[i][j] = 4;
         }
     }
 }
