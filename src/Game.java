@@ -124,6 +124,23 @@ public class Game {
     
     public static void tiltDown(){
         // tilt board down
+        for(int i=0; i<4; i++){
+            if(data[1][i]==0){
+                data[1][i]=data[0][i];
+                data[0][i] = 0;
+            }
+            if(data[2][i]==0){
+                data[2][i]=data[1][i];
+                data[1][i]=data[0][i];
+                data[0][i] = 0;
+            }
+            if(data[3][i]==0){
+                data[3][i]=data[2][i];
+                data[2][i]=data[1][i];
+                data[1][i]=data[0][i];
+                data[0][i] = 0;
+            }
+        }
     }
     
     public static int getRandomNumber(){
