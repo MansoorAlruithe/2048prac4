@@ -42,4 +42,20 @@ public class Game {
                 !userInput.equalsIgnoreCase("D") );
         return userInput;
     }
+    
+    private static void tiltLeft(){
+        // tilt board left
+    }
+    
+    private static void tiltRight(){
+        // tilt board left
+    }
+    
+    private static void tiltUp(){
+        // tilt board up
+    }
+    
+    private static void tiltDown(){
+        // tilt board down
+    }
 }
