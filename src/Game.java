@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Game {
 
     private static Scanner scan = new Scanner(System.in);
+    private static int[][] data = new int[4][4];
     
     public static void main(String[] args) {
         String userInput;
