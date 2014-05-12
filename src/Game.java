@@ -28,7 +28,9 @@ public class Game {
             else if(userInput.equalsIgnoreCase("D")){
                 tiltDown();
             }
-            populateRandomCell();
+            if(!userInput.equalsIgnoreCase("Q")){
+                populateRandomCell();
+            }
         }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
         displayBoard();
         System.out.println("Game Over!");
