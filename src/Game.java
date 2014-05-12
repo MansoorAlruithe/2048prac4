@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Game {
 
-    private static Scanner scan = new Scanner(System.in);
-    private static int[][] data = new int[4][4];
+    public static Scanner scan = new Scanner(System.in);
+    public static int[][] data = new int[4][4];
     
     public static void main(String[] args) {
         String userInput;
@@ -55,19 +55,34 @@ public class Game {
         return userInput;
     }
     
-    private static void tiltLeft(){
+    public static void tiltLeft(){
+        // tilt board left
+        for(int i=0; i<4; i++){
+            if(data[i][2]==0){
+                data[i][2]=data[i][3];
+                data[i][3] = 0;
+            }
+            if(data[i][1]==0){
+                data[i][1]=data[i][2];
+                data[i][2]=data[i][3];
+            }
+            if(data[i][0]==0){
+                data[i][0]=data[i][1];
+                data[i][1]=data[i][2];
+                data[i][2]=data[i][3];
+            }
+        }
+    }
+    
+    public static void tiltRight(){
         // tilt board left
     }
     
-    private static void tiltRight(){
-        // tilt board left
-    }
-    
-    private static void tiltUp(){
+    public static void tiltUp(){
         // tilt board up
     }
     
-    private static void tiltDown(){
+    public static void tiltDown(){
         // tilt board down
     }
 }
