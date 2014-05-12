@@ -10,7 +10,6 @@ public class Game {
         String userInput;
         do{
             displayBoard();
-            System.out.print("Next move? 'Q to quit' : ");
             userInput = readUserInput();
         }while(!userInput.equalsIgnoreCase("Q"));
     }
@@ -27,7 +26,15 @@ public class Game {
     }
     
     public static String readUserInput(){
-        String userInput = scan.nextLine();
+        String userInput;
+        do{
+            System.out.println("Next move? 'Q to quit' : ");
+            userInput = scan.nextLine();
+        }while(!userInput.equalsIgnoreCase("Q") && 
+                !userInput.equalsIgnoreCase("L") && 
+                !userInput.equalsIgnoreCase("R") && 
+                !userInput.equalsIgnoreCase("U") && 
+                !userInput.equalsIgnoreCase("D") );
         return userInput;
     }
 }
