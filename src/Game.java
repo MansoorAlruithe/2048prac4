@@ -18,7 +18,11 @@ public class Game {
     public static void displayBoard(){
         for(int i=0; i<4; i++){
             for(int j=0; j<4; j++){
-                System.out.print("[ ]");
+                String cellValue = "";
+                if(data[i][j]!=0){
+                    cellValue = ""+data[i][j];
+                }
+                System.out.print("[ "+cellValue+" ]");
                 if(j==3){
                     System.out.print("\n");
                 }
