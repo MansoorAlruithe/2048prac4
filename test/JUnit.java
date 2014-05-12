@@ -62,5 +62,32 @@ public class JUnit {
         
     }
     
+    
+    @Test
+    public void testTiltRight(){
+        Game.data = new int[][]{{0,0,0,1},{1,1,1,0},{1,0,0,1},{1,0,0,0}};
+        Game.tiltRight();
+        Assert.assertEquals(Game.data[0][0], 0);
+        Assert.assertEquals(Game.data[0][1], 0);
+        Assert.assertEquals(Game.data[0][2], 0);
+        Assert.assertEquals(Game.data[0][3], 1);
+        
+        Assert.assertEquals(Game.data[1][0], 0);
+        Assert.assertEquals(Game.data[1][1], 1);
+        Assert.assertEquals(Game.data[1][2], 1);
+        Assert.assertEquals(Game.data[1][3], 1);
+        
+        Assert.assertEquals(Game.data[2][0], 0);
+        Assert.assertEquals(Game.data[2][1], 0);
+        Assert.assertEquals(Game.data[2][2], 1);
+        Assert.assertEquals(Game.data[2][3], 1);
+        
+        Assert.assertEquals(Game.data[3][0], 0);
+        Assert.assertEquals(Game.data[3][1], 0);
+        Assert.assertEquals(Game.data[3][2], 0);
+        Assert.assertEquals(Game.data[3][3], 1);
+        
+    }
+
 }
 
