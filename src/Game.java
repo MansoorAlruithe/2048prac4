@@ -12,6 +12,18 @@ public class Game {
         do{
             displayBoard();
             userInput = readUserInput();
+            if(userInput.equalsIgnoreCase("L")){
+                tiltLeft();
+            }
+            else if(userInput.equalsIgnoreCase("R")){
+                tiltRight();
+            }
+            else if(userInput.equalsIgnoreCase("U")){
+                tiltUp();
+            }
+            else if(userInput.equalsIgnoreCase("D")){
+                tiltDown();
+            }
         }while(!userInput.equalsIgnoreCase("Q"));
     }
     
