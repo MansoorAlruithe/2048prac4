@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import org.omg.PortableInterceptor.DISCARDING;
 
 
 public class Game {
@@ -28,7 +29,8 @@ public class Game {
                 tiltDown();
             }
             populateRandomCell();
-        }while(!userInput.equalsIgnoreCase("Q"));
+        }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
+        displayBoard();
     }
     
     public static void displayBoard(){
@@ -149,16 +151,30 @@ public class Game {
     
     private static void populateRandomCell(){
         int i,j;
+        int counter =10000;
         do{
             i = getRandomNumber();
             j = getRandomNumber();
-            
-        }while(data[i][j]!=0);
+            counter --;
+        }while(data[i][j]!=0 && counter >0);
         if(getRandomNumber()<2){
             data[i][j] = 2;
         }
         else{
             data[i][j] = 4;
         }
+    }
+    
+    public static boolean checkIfGameOver(){
+        boolean gameOver = true;
+        for(int i=0; i<4; i++){
+            for(int j=0; j<4; j++){
+                if(data[i][j]==0){
+                    gameOver = false;
+                    break;
+                }
+            }
+        }
+        return gameOver;
     }
 }
