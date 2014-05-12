@@ -27,6 +27,7 @@ public class Game {
             else if(userInput.equalsIgnoreCase("D")){
                 tiltDown();
             }
+            populateRandomCell();
         }while(!userInput.equalsIgnoreCase("Q"));
     }
     
@@ -102,6 +103,23 @@ public class Game {
     
     public static void tiltUp(){
         // tilt board up
+        for(int i=0; i<4; i++){
+            if(data[2][i]==0){
+                data[2][i]=data[3][i];
+                data[3][i] = 0;
+            }
+            if(data[1][i]==0){
+                data[1][i]=data[2][i];
+                data[2][i]=data[3][i];
+                data[3][i] = 0;
+            }
+            if(data[0][i]==0){
+                data[0][i]=data[1][i];
+                data[1][i]=data[2][i];
+                data[2][i]=data[3][i];
+                data[3][i] = 0;
+            }
+        }
     }
     
     public static void tiltDown(){
