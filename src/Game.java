@@ -65,17 +65,36 @@ public class Game {
             if(data[i][1]==0){
                 data[i][1]=data[i][2];
                 data[i][2]=data[i][3];
+                data[i][3] = 0;
             }
             if(data[i][0]==0){
                 data[i][0]=data[i][1];
                 data[i][1]=data[i][2];
                 data[i][2]=data[i][3];
+                data[i][3] = 0;
             }
         }
     }
     
     public static void tiltRight(){
-        // tilt board left
+        // tilt board right
+        for(int i=0; i<4; i++){
+            if(data[i][1]==0){
+                data[i][1]=data[i][0];
+                data[i][0] = 0;
+            }
+            if(data[i][2]==0){
+                data[i][2]=data[i][1];
+                data[i][1]=data[i][0];
+                data[i][0] = 0;
+            }
+            if(data[i][3]==0){
+                data[i][3]=data[i][2];
+                data[i][2]=data[i][1];
+                data[i][1]=data[i][0];
+                data[i][0] = 0;
+            }
+        }
     }
     
     public static void tiltUp(){
