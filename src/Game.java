@@ -31,6 +31,7 @@ public class Game {
             populateRandomCell();
         }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
         displayBoard();
+        System.out.println("Game Over!");
     }
     
     public static void displayBoard(){
