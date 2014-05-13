@@ -10,8 +10,8 @@ public class Game {
     public static void main(String[] args) {
         String userInput;
         // initially populate 2 random cells
-        populateRandomCell();
-        populateRandomCell();
+        populateRandomCell(true);
+        populateRandomCell(true);
         do{
             displayBoard();
             userInput = readUserInput();
@@ -28,7 +28,7 @@ public class Game {
                 tiltDown();
             }
             if(!userInput.equalsIgnoreCase("Q")){
-                populateRandomCell();
+                populateRandomCell(false);
             }
         }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
         displayBoard();
@@ -208,7 +208,7 @@ public class Game {
         return (int)(Math.random()*4);
     }
     
-    private static void populateRandomCell(){
+    private static void populateRandomCell(boolean startGame){
         int i,j;
         int counter =10000;
         do{
@@ -216,12 +216,18 @@ public class Game {
             j = getRandomNumber();
             counter --;
         }while(data[i][j]!=0 && counter >0);
-        if(getRandomNumber()<2){
+        if(startGame){
             data[i][j] = 2;
         }
         else{
-            data[i][j] = 4;
+            if(getRandomNumber()<2){
+                data[i][j] = 2;
+            }
+            else{
+                data[i][j] = 4;
+            }
         }
+        
     }
     
     public static boolean checkIfGameOver(){
