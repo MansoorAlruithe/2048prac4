@@ -54,6 +54,13 @@ public class Game {
         do{
             System.out.println("Next move? 'Q to quit' : ");
             userInput = scan.nextLine();
+            if(!userInput.equalsIgnoreCase("Q") && 
+                !userInput.equalsIgnoreCase("L") && 
+                !userInput.equalsIgnoreCase("R") && 
+                !userInput.equalsIgnoreCase("U") && 
+                !userInput.equalsIgnoreCase("D")){
+                System.out.println("Invalid input. Type l, r, u, or d to tilt board");
+            }
         }while(!userInput.equalsIgnoreCase("Q") && 
                 !userInput.equalsIgnoreCase("L") && 
                 !userInput.equalsIgnoreCase("R") && 
