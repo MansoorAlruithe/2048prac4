@@ -38,24 +38,24 @@ public class JUnit {
 
     @Test
     public void testTiltLeft(){
-        Game.data = new int[][]{{0,0,0,1},{1,1,1,0},{1,0,0,1},{1,0,0,0}};
+        Game.data = new int[][]{{0,0,0,2},{2,2,2,0},{2,0,0,2},{2,0,0,0}};
         Game.tiltLeft();
-        Assert.assertEquals(Game.data[0][0], 1);
+        Assert.assertEquals(Game.data[0][0], 2);
         Assert.assertEquals(Game.data[0][1], 0);
         Assert.assertEquals(Game.data[0][2], 0);
         Assert.assertEquals(Game.data[0][3], 0);
         
-        Assert.assertEquals(Game.data[1][0], 1);
-        Assert.assertEquals(Game.data[1][1], 1);
-        Assert.assertEquals(Game.data[1][2], 1);
+        Assert.assertEquals(Game.data[1][0], 4);
+        Assert.assertEquals(Game.data[1][1], 2);
+        Assert.assertEquals(Game.data[1][2], 0);
         Assert.assertEquals(Game.data[1][3], 0);
         
-        Assert.assertEquals(Game.data[2][0], 1);
-        Assert.assertEquals(Game.data[2][1], 1);
+        Assert.assertEquals(Game.data[2][0], 4);
+        Assert.assertEquals(Game.data[2][1], 0);
         Assert.assertEquals(Game.data[2][2], 0);
         Assert.assertEquals(Game.data[2][3], 0);
         
-        Assert.assertEquals(Game.data[3][0], 1);
+        Assert.assertEquals(Game.data[3][0], 2);
         Assert.assertEquals(Game.data[3][1], 0);
         Assert.assertEquals(Game.data[3][2], 0);
         Assert.assertEquals(Game.data[3][3], 0);
@@ -65,48 +65,48 @@ public class JUnit {
     
     @Test
     public void testTiltRight(){
-        Game.data = new int[][]{{0,0,0,1},{1,1,1,0},{1,0,0,1},{1,0,0,0}};
+        Game.data = new int[][]{{0,0,0,2},{2,2,2,0},{2,0,0,2},{2,0,0,0}};
         Game.tiltRight();
         Assert.assertEquals(Game.data[0][0], 0);
         Assert.assertEquals(Game.data[0][1], 0);
         Assert.assertEquals(Game.data[0][2], 0);
-        Assert.assertEquals(Game.data[0][3], 1);
+        Assert.assertEquals(Game.data[0][3], 2);
         
         Assert.assertEquals(Game.data[1][0], 0);
-        Assert.assertEquals(Game.data[1][1], 1);
-        Assert.assertEquals(Game.data[1][2], 1);
-        Assert.assertEquals(Game.data[1][3], 1);
+        Assert.assertEquals(Game.data[1][1], 0);
+        Assert.assertEquals(Game.data[1][2], 2);
+        Assert.assertEquals(Game.data[1][3], 4);
         
         Assert.assertEquals(Game.data[2][0], 0);
         Assert.assertEquals(Game.data[2][1], 0);
-        Assert.assertEquals(Game.data[2][2], 1);
-        Assert.assertEquals(Game.data[2][3], 1);
+        Assert.assertEquals(Game.data[2][2], 0);
+        Assert.assertEquals(Game.data[2][3], 4);
         
         Assert.assertEquals(Game.data[3][0], 0);
         Assert.assertEquals(Game.data[3][1], 0);
         Assert.assertEquals(Game.data[3][2], 0);
-        Assert.assertEquals(Game.data[3][3], 1);
+        Assert.assertEquals(Game.data[3][3], 2);
         
     }
     
     @Test
     public void testTiltUp(){
-        Game.data = new int[][]{{0,0,0,1},
-                                {1,1,1,0},
-                                {1,0,0,1},
-                                {1,0,0,0}};
+        Game.data = new int[][]{{0,0,0,2},
+                                {2,0,0,0},
+                                {2,0,0,2},
+                                {0,0,0,0}};
         Game.tiltUp();
-        Assert.assertEquals(Game.data[0][0], 1);
-        Assert.assertEquals(Game.data[0][1], 1);
-        Assert.assertEquals(Game.data[0][2], 1);
-        Assert.assertEquals(Game.data[0][3], 1);
+        Assert.assertEquals(Game.data[0][0], 4);
+        Assert.assertEquals(Game.data[0][1], 0);
+        Assert.assertEquals(Game.data[0][2], 0);
+        Assert.assertEquals(Game.data[0][3], 4);
         
-        Assert.assertEquals(Game.data[1][0], 1);
+        Assert.assertEquals(Game.data[1][0], 0);
         Assert.assertEquals(Game.data[1][1], 0);
         Assert.assertEquals(Game.data[1][2], 0);
-        Assert.assertEquals(Game.data[1][3], 1);
+        Assert.assertEquals(Game.data[1][3], 0);
         
-        Assert.assertEquals(Game.data[2][0], 1);
+        Assert.assertEquals(Game.data[2][0], 0);
         Assert.assertEquals(Game.data[2][1], 0);
         Assert.assertEquals(Game.data[2][2], 0);
         Assert.assertEquals(Game.data[2][3], 0);
@@ -120,30 +120,30 @@ public class JUnit {
     
     @Test
     public void testTiltDown(){
-        Game.data = new int[][]{{0,0,0,1},
-                                {1,1,1,0},
-                                {1,0,0,1},
-                                {1,0,0,0}};
+        Game.data = new int[][]{{0,0,0,2},
+                                {2,0,0,0},
+                                {2,0,0,2},
+                                {0,0,0,0}};
         Game.tiltDown();
         Assert.assertEquals(Game.data[0][0], 0);
         Assert.assertEquals(Game.data[0][1], 0);
         Assert.assertEquals(Game.data[0][2], 0);
         Assert.assertEquals(Game.data[0][3], 0);
         
-        Assert.assertEquals(Game.data[1][0], 1);
+        Assert.assertEquals(Game.data[1][0], 0);
         Assert.assertEquals(Game.data[1][1], 0);
         Assert.assertEquals(Game.data[1][2], 0);
         Assert.assertEquals(Game.data[1][3], 0);
         
-        Assert.assertEquals(Game.data[2][0], 1);
+        Assert.assertEquals(Game.data[2][0], 0);
         Assert.assertEquals(Game.data[2][1], 0);
         Assert.assertEquals(Game.data[2][2], 0);
-        Assert.assertEquals(Game.data[2][3], 1);
+        Assert.assertEquals(Game.data[2][3], 0);
         
-        Assert.assertEquals(Game.data[3][0], 1);
-        Assert.assertEquals(Game.data[3][1], 1);
-        Assert.assertEquals(Game.data[3][2], 1);
-        Assert.assertEquals(Game.data[3][3], 1);
+        Assert.assertEquals(Game.data[3][0], 4);
+        Assert.assertEquals(Game.data[3][1], 0);
+        Assert.assertEquals(Game.data[3][2], 0);
+        Assert.assertEquals(Game.data[3][3], 4);
         
     }
 
@@ -162,6 +162,16 @@ public class JUnit {
                                 {4,2,32,8}};
         gameOver = Game.checkIfGameOver();
         Assert.assertTrue(gameOver);
+    }
+    
+     @Test
+    public void testUserScore(){
+        Game.data = new int[][]{{2,0,0,2},
+                                {4,4,0,0},
+                                {0,0,0,0},
+                                {0,0,0,0}};
+        Game.tiltLeft();
+        Assert.assertEquals(Game.score, 12);
     }
 }
 
