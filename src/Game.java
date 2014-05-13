@@ -91,22 +91,26 @@ public class Game {
             // check if we need to merge
             if(data[i][0] == data[i][1]){
                 data[i][0] = data[i][0] + data[i][1];
+                score += data[i][0];
                 data[i][1] = data[i][2];
                 data[i][2] = data[i][3];
                 data[i][3] = 0;
                 if(data[i][1] == data[i][2]){
                     data[i][1] = data[i][1] + data[i][2];
+                    score += data[i][1];
                     data[i][2] = 0;
                 }
             }
             else if(data[i][1] == data[i][2]){
                 data[i][1] = data[i][1] + data[i][2];
+                score += data[i][1];
                 data[i][2] = 0;
                 data[i][2] = data[i][3];
                 data[i][3] = 0;
             }
             else if(data[i][2] == data[i][3]){
-                data[i][2] = data[i][3];
+                data[i][2] = data[i][2] + data[i][3];
+                score += data[i][2];
                 data[i][3] = 0;
             }
         }
