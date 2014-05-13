@@ -180,6 +180,31 @@ public class Game {
                 data[2][i]=data[3][i];
                 data[3][i] = 0;
             }
+            // check if we need to merge
+            if(data[0][i] == data[1][i]){
+                data[0][i] = data[0][i] + data[1][i];
+                score += data[0][i];
+                data[1][i] = data[2][i];
+                data[2][i] = data[3][i];
+                data[3][i] = 0;
+                if(data[1][i] == data[2][i]){
+                    data[1][i] = data[1][i] + data[2][i];
+                    score += data[1][i];
+                    data[2][i] = 0;
+                }
+            }
+            else if(data[1][i] == data[2][i]){
+                data[1][i] = data[1][i] + data[2][i];
+                score += data[1][i];
+                data[2][i] = 0;
+                data[2][i] = data[3][i];
+                data[3][i] = 0;
+            }
+            else if(data[2][i] == data[3][i]){
+                data[2][i] = data[2][i] + data[3][i];
+                score += data[2][i];
+                data[3][i] = 0;
+            }
         }
     }
     
