@@ -33,6 +33,7 @@ public class Game {
         }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
         displayBoard();
         System.out.println("Game Over. Your score is "+ score);
+        
     }
     
     public static void displayBoard(){
