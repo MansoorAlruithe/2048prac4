@@ -1,6 +1,6 @@
 
-Test Plan of 2048 Game |
-=======================|
+Test Plan of 2048 Game 
+=======================
 
 
 Overview |
@@ -13,23 +13,23 @@ The goal is to get a tile of value 2048; initially board will have two tiles wit
 When there is no room to add any new tile, the game is over and user score is displayed.
 
 
-System Requirements |
-====================|
+System Requirements 
+====================
 -	Java JDK version 6
 -	Github account and repository
 -	Any text editor
 -	Internet connection to push files to github repository
 
 
-Test Types | 
-===========|
+Test Types 
+===========
 -	Unit  test, JUnit test cases is developed to test all program methods separately
 -	Regression test
 -	User acceptance test
 
 
-Test Scenarios and Success Criteria  |
-=====================================|
+Test Scenarios and Success Criteria
+=====================================
 Validate user input
 -	User can only enter L, R, U, P, or Q "case insensitive”.
 -	System should display proper error message when any other input is entered
@@ -91,8 +91,9 @@ Out of scope scenarios/features
 -	Game is not available online.
 
 
-Dependencies and risks |
-=======================|
+Dependencies and risks
+=======================
+
 Dependencies:
 -	Strong understanding of the rules of the 2048 game
 -	Compiled sample game to be available to be used as reference
