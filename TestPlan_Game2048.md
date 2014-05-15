@@ -3,8 +3,8 @@ Test Plan of 2048 Game
 =======================
 
 
-Overview |
-=========|
+Overview 
+=========
 This document provides a complete test plan for famous 2048 game.
 Main goal of 2048 game is to tilt board left, right, up, or down to move numbers accordingly, then if there are 2 numbers that matches each other 
 they are combined in one tile with value of double the original tile, each time board is tilted in any direction a new tile is randomly added to an empty tile,
