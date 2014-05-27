@@ -21,11 +21,19 @@ System Requirements
 -	Internet connection to push files to github repository
 
 
-Test Types 
-===========
--	Unit  test, JUnit test cases is developed to test all program methods separately
--	Regression test
--	User acceptance test
+Types of tests that will be performed
+======================================
+-	Unit test:  JUnit test cases are developed to test all program methods separately.
+-	Regression test: it ensures that any bugs have been fixed and that no other previously working functions have failed as a result of the reparations and that newly added features have not created problems with previous versions of the software.
+-	User acceptance test: it is to ensure that the system satisfies the needs of the business as specified in the requirements and provides confidence in its use.
+
+
+Types of tests that will not beperformed
+=========================================
+-	Security testing: as application has no security constrains, user login, or data encryption/decryption, so security testing is not applicable.
+-	Integration testing: as application doesn’t integrate with any other systems, so integration testing is not applicable.
+-	Performance and load testing: as application is not used on big scale, and it doesn’t dea with huge data, performance and load testing is not applicable.
+
 
 
 Test Scenarios and Success Criteria
