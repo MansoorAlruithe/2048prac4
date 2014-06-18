@@ -1,4 +1,3 @@
-Enter file contents here
 Test plan for in-car GPS navigation system
 ------------------------------------------
 Overview
