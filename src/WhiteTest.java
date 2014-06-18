@@ -17,7 +17,18 @@ public class WhiteTest {
         
         testTiltRowLeft();
         
+        testTiltRowRight();
+        
+        testTiltRowUp();
+        
+        testTiltRowDown();
+        
         testGamOver();
+        
+        testValidateUsrInput("Y");
+        testValidateUsrInput("L");
+        
+        testIfMergeUp();
     }
     
     private static void testPopulateGrid(int boardSize){
@@ -112,6 +123,70 @@ public class WhiteTest {
         }
     }
     
+    private static void testTiltRowRight(){
+        int i = 2;
+        int boardSize = 4;
+        int[][] data = new int[][]{{0,0,0,2},{2,2,2,0},{2,0,0,0},{2,0,0,0}};
+        for(int j = 1 ; j<boardSize ; j++){
+            if(data[i][j]==0){
+                for(int x= j ; x>0; x--){
+                    data[i][x] = data[i][x-1];
+                    data[i][x-1]=0;
+                }
+            }
+        }    
+
+        if(data[2][0]==0 && data[2][1]==0 && data[2][2]==0 && data[2][3]==2){
+            System.out.println("testTiltRowRight PASSED");
+        }
+        else{
+            System.out.println("testTiltRowRight FAILD");
+        }
+    }
+    
+    private static void testTiltRowUp(){
+        int i = 0;
+        int boardSize = 4;
+        int[][] data = new int[][]{{0,0,0,2},{2,2,2,0},{0,0,0,0},{0,0,0,0}};
+        for(int j = boardSize-2 ; j>=0 ; j--){
+            if(data[j][i]==0){
+                for(int x= j ; x<boardSize-1; x++){
+                    data[x][i] = data[x+1][i];
+                    data[x+1][i]=0;
+                }
+            }
+        }   
+ 
+
+        if(data[0][0]==2 && data[1][0]==0 && data[2][0]==0 && data[3][0]==0){
+            System.out.println("testTiltRowUp PASSED");
+        }
+        else{
+            System.out.println("testTiltRowUp FAILD");
+        }
+    }
+    
+    private static void testTiltRowDown(){
+        int i = 0;
+        int boardSize = 4;
+        int[][] data = new int[][]{{0,0,0,2},{2,2,2,0},{0,0,0,0},{0,0,0,0}};
+        for(int j = 1 ; j<boardSize ; j++){
+            if(data[j][i]==0){
+                for(int x= j ; x>0; x--){
+                    data[x][i] = data[x-1][i];
+                    data[x-1][i]=0;
+                }
+            }
+        }
+
+        if(data[0][0]==0 && data[1][0]==0 && data[2][0]==0 && data[3][0]==2){
+            System.out.println("testTiltRowDown PASSED");
+        }
+        else{
+            System.out.println("testTiltRowDown FAILD");
+        }
+    }
+    
     private static void testGamOver(){
         int boardSize = 4;
         int[][] data = new int[][]{{0,0,0,2},{2,2,2,0},{0,0,0,2},{2,0,0,0}};
@@ -149,8 +224,49 @@ public class WhiteTest {
         else{
             System.out.println("testGamOver FAILD for case game over");
         }
+    }
+    
+    private static void testValidateUsrInput(String userInput){
+        boolean valid = true;
+        if(!userInput.equalsIgnoreCase("Q") && 
+            !userInput.equalsIgnoreCase("L") && 
+            !userInput.equalsIgnoreCase("R") && 
+            !userInput.equalsIgnoreCase("U") && 
+            !userInput.equalsIgnoreCase("D")){
+            valid= false;
+        }
         
+        if(!userInput.equalsIgnoreCase("Q") && 
+            !userInput.equalsIgnoreCase("L") && 
+            !userInput.equalsIgnoreCase("R") && 
+            !userInput.equalsIgnoreCase("U") && 
+            !userInput.equalsIgnoreCase("D") && valid){
+            System.out.println("testValidateUsrInput FAILD for input "+ userInput);
+        }
+        else{
+            System.out.println("testValidateUsrInput PASSED for input "+ userInput);
+        }
         
+    }
+    
+    private static void testIfMergeUp(){
+        int i = 0;
+        int boardSize = 4;
+        int[][] data = new int[][]{{0,0,0,2},{2,2,2,0},{0,0,0,0},{2,0,0,0}};
+        boolean merged = false;
+        for(int j=0; j<=boardSize-2; j++){
+            if(data[j][i] == data[j+1][i]){
+                data[j][i] = data[j][i]+ data[j+1][i];
+                merged = true;
+                data[j+1][i] = 0;
+            }
+        }
         
+        if(merged == true){
+            System.out.println("testIfMergeUp PASSED");
+        }
+        else{
+            System.out.println("testIfMergeUp PASSED");
+        }
     }
 }
