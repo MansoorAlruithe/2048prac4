@@ -4,16 +4,25 @@ import java.util.Scanner;
 public class Game {
 
     public static Scanner scan = new Scanner(System.in);
-    public static int[][] data = new int[][]{{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    public static int[][] data;
     public static int score = 0;
+    public static int boardSize = 6;
     
     public static void main(String[] args) {
         String userInput;
+        // initialize data array with initial value 0
+        data= new int[boardSize][boardSize];
+        for(int i=0; i<boardSize; i++){
+            for(int j=0; j<boardSize; j++){
+                data[i][j]= 0;
+            }
+        }
         // initially populate 2 random cells
         populateRandomCell(true);
         populateRandomCell(true);
         do{
-            displayBoard();
+      
+            displayBoard(boardSize);
             userInput = readUserInput();
             if(userInput.equalsIgnoreCase("L")){
                 tiltLeft();
@@ -31,14 +40,14 @@ public class Game {
                 populateRandomCell(false);
             }
         }while(!userInput.equalsIgnoreCase("Q") && !checkIfGameOver());
-        displayBoard();
+        displayBoard(boardSize);
         System.out.println("Game Over. Your score is "+ score);
         
     }
     
-    public static void displayBoard(){
-        for(int i=0; i<4; i++){
-            for(int j=0; j<4; j++){
+    public static void displayBoard(int size){
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
                 String cellValue = " ";
                 if(data[i][j]!=0){
                     cellValue = ""+data[i][j];
@@ -55,7 +64,7 @@ public class Game {
                  else if(cellValue.length()==4){
                     System.out.print("[ "+cellValue+"]");
                 }
-                if(j==3){
+                if(j==size-1){
                     System.out.print("\n");
                 }
             }
@@ -84,190 +93,46 @@ public class Game {
     
     public static void tiltLeft(){
         // tilt board left
-        for(int i=0; i<4; i++){
-            if(data[i][2]==0){
-                data[i][2]=data[i][3];
-                data[i][3] = 0;
-            }
-            if(data[i][1]==0){
-                data[i][1]=data[i][2];
-                data[i][2]=data[i][3];
-                data[i][3] = 0;
-            }
-            if(data[i][0]==0){
-                data[i][0]=data[i][1];
-                data[i][1]=data[i][2];
-                data[i][2]=data[i][3];
-                data[i][3] = 0;
-            }
-            // check if we need to merge
-            if(data[i][0] == data[i][1]){
-                data[i][0] = data[i][0] + data[i][1];
-                score += data[i][0];
-                data[i][1] = data[i][2];
-                data[i][2] = data[i][3];
-                data[i][3] = 0;
-                if(data[i][1] == data[i][2]){
-                    data[i][1] = data[i][1] + data[i][2];
-                    score += data[i][1];
-                    data[i][2] = 0;
-                }
-            }
-            else if(data[i][1] == data[i][2]){
-                data[i][1] = data[i][1] + data[i][2];
-                score += data[i][1];
-                data[i][2] = 0;
-                data[i][2] = data[i][3];
-                data[i][3] = 0;
-            }
-            else if(data[i][2] == data[i][3]){
-                data[i][2] = data[i][2] + data[i][3];
-                score += data[i][2];
-                data[i][3] = 0;
+        for(int i=0; i<boardSize; i++){
+            rotateLeft(i);
+            if(checkMergeLeft(i)){
+                checkMergeLeft(i);
             }
         }
     }
     
     public static void tiltRight(){
         // tilt board right
-        for(int i=0; i<4; i++){
-            if(data[i][1]==0){
-                data[i][1]=data[i][0];
-                data[i][0] = 0;
-            }
-            if(data[i][2]==0){
-                data[i][2]=data[i][1];
-                data[i][1]=data[i][0];
-                data[i][0] = 0;
-            }
-            if(data[i][3]==0){
-                data[i][3]=data[i][2];
-                data[i][2]=data[i][1];
-                data[i][1]=data[i][0];
-                data[i][0] = 0;
-            }
-            // check if we need to merge
-            if(data[i][2] == data[i][3]){
-                data[i][3] = data[i][2] + data[i][3];
-                score += data[i][3];
-                data[i][2] = data[i][1];
-                data[i][1] = data[i][0];
-                data[i][0] = 0;
-                if(data[i][1] == data[i][2]){
-                    data[i][2] = data[i][1] + data[i][2];
-                    score += data[i][2];
-                    data[i][1] = 0;
-                }
-            }
-            else if(data[i][1] == data[i][2]){
-                data[i][2] = data[i][1] + data[i][2];
-                score += data[i][2];
-                data[i][1] = 0;
-                data[i][1] = data[i][0];
-                data[i][0] = 0;
-            }
-            else if(data[i][0] == data[i][1]){
-                data[i][1] = data[i][1] + data[i][0];
-                score += data[i][1];
-                data[i][0] = 0;
+        for(int i=0; i<boardSize; i++){
+            rotateRight(i);
+            if(checkMergeRight(i)){
+                checkMergeRight(i);
             }
         }
     }
     
     public static void tiltUp(){
         // tilt board up
-        for(int i=0; i<4; i++){
-            if(data[2][i]==0){
-                data[2][i]=data[3][i];
-                data[3][i] = 0;
-            }
-            if(data[1][i]==0){
-                data[1][i]=data[2][i];
-                data[2][i]=data[3][i];
-                data[3][i] = 0;
-            }
-            if(data[0][i]==0){
-                data[0][i]=data[1][i];
-                data[1][i]=data[2][i];
-                data[2][i]=data[3][i];
-                data[3][i] = 0;
-            }
-            // check if we need to merge
-            if(data[0][i] == data[1][i]){
-                data[0][i] = data[0][i] + data[1][i];
-                score += data[0][i];
-                data[1][i] = data[2][i];
-                data[2][i] = data[3][i];
-                data[3][i] = 0;
-                if(data[1][i] == data[2][i]){
-                    data[1][i] = data[1][i] + data[2][i];
-                    score += data[1][i];
-                    data[2][i] = 0;
-                }
-            }
-            else if(data[1][i] == data[2][i]){
-                data[1][i] = data[1][i] + data[2][i];
-                score += data[1][i];
-                data[2][i] = 0;
-                data[2][i] = data[3][i];
-                data[3][i] = 0;
-            }
-            else if(data[2][i] == data[3][i]){
-                data[2][i] = data[2][i] + data[3][i];
-                score += data[2][i];
-                data[3][i] = 0;
+        for(int i=0; i<boardSize; i++){
+            rotateUp(i);
+            if(checkMergeUp(i)){
+                checkMergeUp(i);
             }
         }
     }
     
     public static void tiltDown(){
         // tilt board down
-        for(int i=0; i<4; i++){
-            if(data[1][i]==0){
-                data[1][i]=data[0][i];
-                data[0][i] = 0;
-            }
-            if(data[2][i]==0){
-                data[2][i]=data[1][i];
-                data[1][i]=data[0][i];
-                data[0][i] = 0;
-            }
-            if(data[3][i]==0){
-                data[3][i]=data[2][i];
-                data[2][i]=data[1][i];
-                data[1][i]=data[0][i];
-                data[0][i] = 0;
-            }
-            // check if we need to merge
-            if(data[2][i] == data[3][i]){
-                data[3][i] = data[2][i] + data[3][i];
-                score += data[3][i];
-                data[2][i] = data[1][i];
-                data[1][i] = data[0][i];
-                data[0][i] = 0;
-                if(data[1][i] == data[2][i]){
-                    data[2][i] = data[1][i] + data[2][i];
-                    score += data[2][i];
-                    data[1][i] = 0;
-                }
-            }
-            else if(data[1][i] == data[2][i]){
-                data[2][i] = data[1][i] + data[2][i];
-                score += data[2][i];
-                data[1][i] = 0;
-                data[1][i] = data[0][i];
-                data[0][i] = 0;
-            }
-            else if(data[0][i] == data[1][i]){
-                data[1][i] = data[1][i] + data[0][i];
-                score += data[1][i];
-                data[0][i] = 0;
+        for(int i=0; i<boardSize; i++){
+            rotateDown(i);
+            if(checkMergeDown(i)){
+                checkMergeDown(i);
             }
         }
     }
     
     public static int getRandomNumber(){
-        return (int)(Math.random()*4);
+        return (int)(Math.random()*boardSize);
     }
     
     private static void populateRandomCell(boolean startGame){
@@ -294,8 +159,8 @@ public class Game {
     
     public static boolean checkIfGameOver(){
         boolean gameOver = true;
-        for(int i=0; i<4; i++){
-            for(int j=0; j<4; j++){
+        for(int i=0; i<boardSize; i++){
+            for(int j=0; j<boardSize; j++){
                 if(data[i][j]==0){
                     gameOver = false;
                     break;
@@ -304,4 +169,105 @@ public class Game {
         }
         return gameOver;
     }
+
+    private static void rotateRight(int i) {
+        for(int j = 1 ; j<boardSize ; j++){
+            if(data[i][j]==0){
+                for(int x= j ; x>0; x--){
+                    data[i][x] = data[i][x-1];
+                    data[i][x-1]=0;
+                }
+            }
+        }        
+    }
+
+    private static boolean checkMergeRight(int i) {
+        boolean merged = false;
+        for(int j=boardSize-1; j>0; j--){
+            if(data[i][j] == data[i][j-1]){
+                data[i][j] = data[i][j] + data[i][j-1];
+                score += data[i][j];
+                merged = true;
+                data[i][j-1] = 0;
+                rotateRight(i);
+            }
+        }
+        return merged;
+    }
+    
+    private static void rotateLeft(int i) {
+        for(int j = boardSize-2 ; j>=0 ; j--){
+            if(data[i][j]==0){
+                for(int x= j ; x<boardSize-1; x++){
+                    data[i][x] = data[i][x+1];
+                    data[i][x+1]=0;
+                }
+            }
+        }        
+    }
+
+    private static boolean checkMergeLeft(int i) {
+        boolean merged = false;
+        for(int j=0; j<=boardSize-2; j++){
+            if(data[i][j] == data[i][j+1]){
+                data[i][j] = data[i][j] + data[i][j+1];
+                score += data[i][j];
+                merged = true;
+                data[i][j+1] = 0;
+                rotateLeft(i);
+            }
+        }
+        return merged;
+    }
+    
+     private static void rotateDown(int i) {
+        for(int j = 1 ; j<boardSize ; j++){
+            if(data[j][i]==0){
+                for(int x= j ; x>0; x--){
+                    data[x][i] = data[x-1][i];
+                    data[x-1][i]=0;
+                }
+            }
+        }        
+    }
+
+    private static boolean checkMergeDown(int i) {
+        boolean merged = false;
+        for(int j=boardSize-1; j>0; j--){
+            if(data[j][i] == data[j-1][i]){
+                data[j][i] = data[j][i] + data[j-1][i];
+                score += data[j][i];
+                merged = true;
+                data[j-1][i] = 0;
+                rotateDown(i);
+            }
+        }
+        return merged;
+    }
+    
+    private static void rotateUp(int i) {
+        for(int j = boardSize-2 ; j>=0 ; j--){
+            if(data[j][i]==0){
+                for(int x= j ; x<boardSize-1; x++){
+                    data[x][i] = data[x+1][i];
+                    data[x+1][i]=0;
+                }
+            }
+        }        
+    }
+
+    private static boolean checkMergeUp(int i) {
+        boolean merged = false;
+        for(int j=0; j<=boardSize-2; j++){
+            if(data[j][i] == data[j+1][i]){
+                data[j][i] = data[j][i]+ data[j+1][i];
+                score += data[j][i];
+                merged = true;
+                data[j+1][i] = 0;
+                rotateUp(i);
+            }
+        }
+        return merged;
+    }
+    
 }
