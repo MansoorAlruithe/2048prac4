@@ -6,7 +6,7 @@ public class Game {
     public static Scanner scan = new Scanner(System.in);
     public static int[][] data;
     public static int score = 0;
-    public static int boardSize = 6;
+    public static int boardSize = 4;
     
     public static void main(String[] args) {
         String userInput;
